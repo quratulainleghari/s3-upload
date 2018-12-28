@@ -20,8 +20,8 @@ pipeline {
       
       stage ('Compile-Package') {
             steps {
-                git "https://github.com/quratulainleghari/my-app.git"
-               sh 'mvn -f /var/lib/jenkins/workspace/sonar-pipeline/my-app-master package'
+                git "https://github.com/john-smart/game-of-life.git"
+               sh 'mvn clean package'
              // sh 'mvn package'
             }
           post {
