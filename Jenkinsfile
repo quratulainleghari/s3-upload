@@ -44,7 +44,7 @@ s3Upload consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, e
         stage('Deploy to Tomcat'){
   steps {
   sshagent(['3d0ff4fe-87e0-468b-9c6f-fbd6f291a57b']) {
-    sh "scp  /var/lib/jenkins/workspace/maven-s3-pipeline/gameoflife-web/target/*.war ubuntu@100.25.255.231:/opt/tomcat/apache-tomcat-8.5.37/webapps"
+    sh "scp  /var/lib/jenkins/workspace/maven-s3-pipeline/gameoflife-web/target/*.war ubuntu@18.213.118.175:/opt/tomcat/apache-tomcat-8.5.37/webapps"
     
     }
     }
