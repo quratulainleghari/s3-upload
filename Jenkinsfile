@@ -30,7 +30,7 @@ pipeline {
                     junit '**/target/surefire-reports/*.xml' 
                    
                    withAWS(credentials: '2eef3f9d-b999-4395-b8b2-aa0e27dd49c2', profile: 'arn:aws:iam::650209565639:user/quratulain') {
-s3CopyArtifact buildSelector: lastSuccessful(), excludeFilter: '', filter: '**/target/*.jar', flatten: false, optional: true, projectName: 'maven-s3-pipeline', target: ''
+s3CopyArtifact buildSelector: workspace(), excludeFilter: '', filter: '**', flatten: false, optional: true, projectName: 'maven-s3-pipeline', target: ''
 
 }
 
