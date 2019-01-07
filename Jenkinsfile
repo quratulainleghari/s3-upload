@@ -29,7 +29,7 @@ pipeline {
                     archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
                     junit '**/target/surefire-reports/*.xml' 
                    
-                   withAWS(credentials: '2eef3f9d-b999-4395-b8b2-aa0e27dd49c2', profile: 'arn:aws:iam::650209565639:user/quratulain') {
+                   withAWS(credentials: '5f00510d-4d3b-4ac7-a914-225bb76a29fe', profile: '6502-0956-5639', region: 'us-east-2') {
 s3CopyArtifact buildSelector: workspace(), excludeFilter: '', filter: '**', flatten: false, optional: true, projectName: 'maven-s3-pipeline', target: ''
 
 }
