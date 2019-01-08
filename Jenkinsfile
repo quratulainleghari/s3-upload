@@ -29,8 +29,8 @@ pipeline {
                     archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
                     junit '**/target/surefire-reports/*.xml' 
                    
-                   withAWS(credentials: '5f00510d-4d3b-4ac7-a914-225bb76a29fe', profile: '6502-0956-5639', region: 'us-east-2') {
-s3CopyArtifact buildSelector: workspace(), excludeFilter: '', filter: '**', flatten: false, optional: true, projectName: 'maven-s3-pipeline', target: ''
+                  // withAWS(credentials: '5f00510d-4d3b-4ac7-a914-225bb76a29fe', profile: '6502-0956-5639', region: 'us-east-2') {
+//s3CopyArtifact buildSelector: workspace(), excludeFilter: '', filter: '**', flatten: false, optional: true, projectName: 'maven-s3-pipeline', target: ''
 
 }
 
@@ -44,6 +44,17 @@ s3CopyArtifact buildSelector: workspace(), excludeFilter: '', filter: '**', flat
          
          
       }
+   
+   stage ('upload'){
+      withAWS(region:'us-east-2',credentials:'c165185d-97cb-4139-a553-df4833faecc3') {
+
+                 def identity=awsIdentity();//Log AWS credentials
+
+                // Upload files from working directory 'dist' in your project workspace
+                s3Upload(bucket:"s3-bucket-jenkins", includePathPattern:'**/*');
+            }
+   }
+   
        
        
         stage('Deploy to Tomcat'){
