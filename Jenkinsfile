@@ -46,6 +46,7 @@ pipeline {
       }
    
    stage ('upload'){
+      steps {
       withAWS(region:'us-east-2',credentials:'c165185d-97cb-4139-a553-df4833faecc3') {
 
                  def identity=awsIdentity();//Log AWS credentials
@@ -53,6 +54,7 @@ pipeline {
                 // Upload files from working directory 'dist' in your project workspace
                 s3Upload(bucket:"s3-bucket-jenkins", includePathPattern:'**/*');
             }
+   }
    }
    
        
